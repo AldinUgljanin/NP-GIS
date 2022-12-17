@@ -1,0 +1,34 @@
+{% extends 'main/layout.html' %}
+
+{% block title%}Map | N2{% endblock %}
+
+{% block content %}
+    <h1 style="margin: 50px;">Interesting things in our city</h1>
+    <div id="map">
+	<iframe width='100%' height='400px'
+	    src="https://api.mapbox.com/styles/v1/aldinugljanin/clbh7aqmf006514o3d3yhn4ho.html?title=false&access_token=pk.eyJ1IjoiYWxkaW51Z2xqYW5pbiIsImEiOiJjbGJoNzV2ZWwwYWw5M3FtbzBvN3E2b2FkIn0.Ue-_WPaBdAYDuWBn7Vy6nQ&zoomwheel=false#15.85/43.138705/20.519715"
+	    title="Streets" style="border:none;"></iframe>
+    </div>
+    <div class="test"></div>
+    <p>{{ cordinates }}</p>
+{% endblock %}
+
+
+{% block script %}
+mapboxgl.accessToken = 'pk.eyJ1IjoiYWxkaW51Z2xqYW5pbiIsImEiOiJjbGJoNzV2ZWwwYWw5M3FtbzBvN3E2b2FkIn0.Ue-_WPaBdAYDuWBn7Vy6nQ';
+const map = new mapboxgl.Map({
+    container: 'map', // container ID
+    style: 'mapbox://styles/mapbox/streets-v12', 
+    center: [20.521048, 43.138351], 
+    zoom: 17 
+    });
+
+    var marker =  new mapboxgl.Marker().setLngLat([20.515768, 43.133509 ]).addTo(map);
+    var marker2 =  new mapboxgl.Marker().setLngLat([21.515768, 44.133509 ]).addTo(map);
+    var marker3 =  new mapboxgl.Marker().setLngLat([23.515768, 45.133509 ]).addTo(map);
+    map.on('click', function(e) {
+      var marker = new mapboxgl.Marker()
+          .setLngLat(e.lngLat)
+	      .addTo(map);
+	      });
+{% endblock %}

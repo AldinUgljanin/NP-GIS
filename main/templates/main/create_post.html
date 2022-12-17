@@ -1,0 +1,42 @@
+<!-- Template For Site Import START-->
+{% extends 'main/layout.html' %}
+<!-- Template For Site Import END -->
+
+<!-- Page Title START -->
+{% block title %} Creat a Post | N2{% endblock %}
+<!-- Page Title END -->
+
+{% load crispy_forms_tags %}
+{% block content %} 
+    <!-- Form START -->
+    <div id="notfound"></div>
+    <form method="post" enctype="multipart/form-data">
+	{% csrf_token %} {{form|crispy}}
+	<button type="submit" class="btn btn-success">Post </button>
+    </form>
+    <!-- Form START -->
+{% endblock %}
+
+{% block script %}
+var x = document.getElementById("notfound");
+function getLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPosition);
+      } else {
+	x.innerHTML = "Geolocation is not supported by this browser.";
+	  }
+	}
+
+    function showPosition(position) {
+	long = document.getElementById("id_longitude")
+	lat = document.getElementById("id_latitude")
+	des = document.getElementById("id_description")
+
+	long.value = position.coords.longitude
+	lat.value = position.coords.latitude
+	des.value = "Tag: Zgrada |  Content: "
+
+      }
+   getLocation()
+
+{% endblock %}

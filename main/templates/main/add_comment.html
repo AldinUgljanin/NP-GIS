@@ -1,0 +1,18 @@
+<!-- Template For Site Import START-->
+{% extends 'main/layout.html' %}
+<!-- Template For Site Import END -->
+
+<!-- Page Title START -->
+{% block title %} Comment On Post | N2{% endblock %}
+<!-- Page Title END -->
+
+{% load crispy_forms_tags %}
+{% block content %} 
+    <!-- Form START -->
+    <form method="post">
+	{% csrf_token %} {{form|crispy}}
+	<button type="submit" class="btn btn-success">Add Comment </button>
+    </form>
+    <!-- Form START -->
+{% endblock %}
+

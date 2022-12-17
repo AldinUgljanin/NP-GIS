@@ -1,0 +1,18 @@
+<!-- Template For Site Import START-->
+{% extends 'main/layout.html' %}
+<!-- Template For Site Import END -->
+
+<!-- Page Title START -->
+{% block title %} Login {% endblock %}
+<!-- Page Title END -->
+
+{% load crispy_forms_tags %}
+{% block content %} 
+    <!-- Form START -->
+    <form method="post">
+	{% csrf_token %} {{form|crispy}}
+	<p>Don't have an account? Create one <a href="/sign-up">Here</a>!</p>
+	<button type="submit" class="btn btn-success">Login </button>
+    </form>
+    <!-- Form START -->
+{% endblock %}
